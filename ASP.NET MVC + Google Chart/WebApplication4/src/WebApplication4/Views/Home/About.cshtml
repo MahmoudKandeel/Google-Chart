@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+<h4>@ViewBag.Data</h4>
+<script>
+    var temp1 = '@ViewBag.Data';
+    var data = JSON.parse('@ViewBag.Data');
+    console.log(data);
+</script>
+<script type="text/javascript">
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var chartData = google.visualization.arrayToDataTable(data);
+
+        var options = {
+            title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(chartData, options);
+    }
+</script>
+
+<p>Use this area to provide additional information.</p>
+
+i will show chart in there. but the data will come from viewdata instead of calling jQuery Ajax request.
+<div id="piechart" style="width: 900px; height: 500px;"></div>
